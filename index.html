@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffedf4" />
+  <meta name="description" content="A tiny, funny, romantic confession made just for Ella." />
+  <title>For Ella 💗</title>
+  <style>
+    :root {
+      --pink: #ff5f9e;
+      --pink-dark: #d93678;
+      --rose: #ff9ebf;
+      --cream: #fff9fc;
+      --ink: #52283b;
+      --muted: #8d6174;
+      --white: #fff;
+      --shadow: 0 18px 55px rgba(190, 63, 117, .15);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: ui-rounded, "Trebuchet MS", system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 8%, rgba(255, 177, 208, .45), transparent 28rem),
+        radial-gradient(circle at 92% 35%, rgba(255, 213, 228, .75), transparent 25rem),
+        linear-gradient(160deg, #fff6fa 0%, #ffeaf2 52%, #fff9fc 100%);
+      overflow-x: hidden;
+    }
+    button { font: inherit; cursor: pointer; }
+    button:focus-visible { outline: 3px solid #9b3562; outline-offset: 3px; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: 0 auto; padding: 18px 20px;
+    }
+    .brand { font-weight: 900; letter-spacing: .3px; color: var(--pink-dark); }
+    .music-btn {
+      border: 1px solid rgba(217, 54, 120, .22); border-radius: 999px;
+      padding: 10px 14px; color: var(--pink-dark); background: rgba(255,255,255,.8);
+      box-shadow: 0 5px 16px rgba(190,63,117,.08); font-weight: 800;
+    }
+    main { width: min(100% - 28px, 820px); margin: 10px auto 60px; }
+    .hero {
+      position: relative; text-align: center; padding: clamp(26px, 6vw, 58px) clamp(18px, 5vw, 48px);
+      background: rgba(255,255,255,.78); border: 1px solid rgba(255,255,255,.95);
+      border-radius: 32px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .eyebrow {
+      display: inline-block; padding: 8px 13px; border-radius: 999px;
+      background: #fff0f6; color: var(--pink-dark); font-size: .82rem; font-weight: 900;
+      letter-spacing: .7px; text-transform: uppercase;
+    }
+    h1 { font-size: clamp(2.6rem, 10vw, 5.2rem); line-height: .98; margin: 20px 0 14px; letter-spacing: -2px; }
+    h1 span { color: var(--pink-dark); }
+    .subtitle { max-width: 540px; margin: 0 auto; color: var(--muted); font-size: clamp(1rem, 3.5vw, 1.18rem); line-height: 1.65; }
+    .mascot { font-size: clamp(4rem, 16vw, 7rem); margin: 18px 0 4px; display: inline-block; animation: bob 2.7s ease-in-out infinite; filter: drop-shadow(0 9px 9px rgba(210,75,130,.15)); }
+    .card {
+      background: rgba(255,255,255,.88); border: 1px solid rgba(255,255,255,.95);
+      border-radius: 26px; box-shadow: var(--shadow); padding: clamp(20px, 5vw, 34px); margin-top: 18px;
+    }
+    .section-kicker { color: var(--pink-dark); font-size: .78rem; text-transform: uppercase; font-weight: 900; letter-spacing: 1.1px; }
+    h2 { font-size: clamp(1.45rem, 5vw, 2.05rem); margin: 9px 0 12px; line-height: 1.2; }
+    p { line-height: 1.7; }
+    .joke-box { background: #fff2f7; border-radius: 18px; padding: 17px 18px; margin-top: 16px; }
+    .joke-box p { margin: 0; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 11px; justify-content: center; margin-top: 22px; }
+    .btn {
+      border: 0; border-radius: 999px; padding: 14px 20px; font-weight: 900;
+      transition: transform .18s ease, box-shadow .18s ease; min-height: 48px;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(135deg, #ff5f9e, #e83c83); color: white; box-shadow: 0 9px 22px rgba(232,60,131,.25); }
+    .btn-soft { background: #fff0f6; color: var(--pink-dark); border: 1px solid #ffd1e2; }
+    .btn-plain { background: white; color: var(--muted); border: 1px solid #f2d7e2; }
+    .progress { height: 8px; background: #ffe1ed; border-radius: 99px; overflow: hidden; margin: 18px 0 5px; }
+    .progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ff9ec4, #e83c83); transition: width .45s ease; }
+    .confession { text-align: center; border: 2px dashed #ffb2ce; background: rgba(255,255,255,.92); }
+    .big-heart { font-size: 3.5rem; animation: pulse 1.4s infinite; display: inline-block; }
+    .answer-grid { display: grid; grid-template-columns: 1fr; gap: 11px; margin-top: 22px; }
+    .answer-btn { text-align: left; border-radius: 17px; padding: 16px; border: 1px solid #f6c8da; background: #fff8fb; color: var(--ink); font-weight: 800; line-height: 1.4; }
+    .answer-btn:hover { background: #ffedf4; transform: translateY(-1px); }
+    .response { display: none; margin-top: 18px; border-radius: 18px; background: #fff0f6; padding: 20px; }
+    .response.show { display: block; animation: pop .35s ease both; }
+    .footer { text-align: center; color: #9b6c80; font-size: .88rem; padding: 28px 12px 8px; }
+    .footer strong { color: var(--pink-dark); }
+    .floating-heart {
+      position: fixed; bottom: -35px; z-index: -1; pointer-events: none; opacity: .55;
+      animation: floatUp linear forwards;
+    }
+    .tiny { font-size: .9rem; color: var(--muted); }
+    .hidden { display: none !important; }
+    @keyframes bob { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-10px) rotate(3deg); } }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+    @keyframes pop { from { opacity: 0; transform: scale(.96) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes floatUp { to { transform: translateY(-115vh) rotate(35deg); opacity: 0; } }
+    @media (min-width: 620px) { .answer-grid { grid-template-columns: 1fr 1fr; } .answer-btn:last-child { grid-column: 1 / -1; text-align: center; } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">💌 tiny love website</div>
+    <button class="music-btn" id="musicToggle" aria-pressed="false">🎵 Play the vibe</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">classified message for one person</div>
+      <div class="mascot" aria-hidden="true">🐻💗</div>
+      <h1>Hey, <span>Ella!</span></h1>
+      <p class="subtitle">May sasabihin ako sa'yo. Don't panic ha… hindi ito group project at hindi rin ako manghihingi ng assignment. 😭</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="startBtn">Sige, sabihin mo 👀</button>
+        <button class="btn btn-soft" id="laterBtn">Kinakabahan ako 😭</button>
+      </div>
+      <p class="tiny" id="heroNote" aria-live="polite">Tip: lakasan ang loob. Mahina ang Wi-Fi pero malakas ang feelings.</p>
+    </section>
+
+    <section class="card hidden" id="story">
+      <div class="section-kicker">step 1 · important research</div>
+      <h2>May scientific explanation kung bakit ikaw. 🧪</h2>
+      <p>Sinubukan kong maging normal kapag kausap ka, kaso nagka-error ang system.</p>
+      <div class="joke-box"><p><strong>Diagnosis:</strong> 99% crush, 1% functioning brain. <br><strong>Recommended treatment:</strong> makausap ka ulit. (Doctor, ikaw na bahala.) 😂</p></div>
+      <div class="progress" aria-label="Confidence meter"><span id="meter"></span></div>
+      <p class="tiny" id="meterText">Confidence loading… please wait.</p>
+      <div class="btn-row"><button class="btn btn-primary" id="nextBtn">Next, kinakaya ko na 💪</button></div>
+    </section>
+
+    <section class="card hidden" id="confession">
+      <div class="section-kicker">step 2 · no more hiding</div>
+      <div class="big-heart" aria-hidden="true">💗</div>
+      <h2>Ella, jokes aside…</h2>
+      <p>Gusto talaga kita. I like your vibe, and gusto pa kitang makilala nang mas mabuti. Hindi ako perfect, pero sincere ako—and I’d love the chance to make you smile. 🥹</p>
+      <div class="joke-box"><p>At kung ikaw ang password ng Wi-Fi, hindi ko na itatanong kung ano. I’ll just keep trying… respectfully. HAHAHA. 😭</p></div>
+      <h2 style="margin-top:26px">Will you be my girlfriend? 💐</h2>
+      <p class="tiny">Pili ka lang ng sagot na komportable ka. No pressure, promise.</p>
+      <div class="answer-grid">
+        <button class="answer-btn" data-answer="yes">💖 YES! Hala, kinilig ako!</button>
+        <button class="answer-btn" data-answer="court">🌷 Ligawan mo muna ako, ha.</button>
+        <button class="answer-btn" data-answer="friends">🫶 Friends muna tayo.</button>
+        <button class="answer-btn" data-answer="think">🥹 Pag-isipan ko muna.</button>
+      </div>
+      <div class="response" id="response" aria-live="polite">
+        <h2 id="responseTitle"></h2>
+        <p id="responseText"></p>
+        <button class="btn btn-soft" id="againBtn">Basahin ulit 💌</button>
+      </div>
+    </section>
+
+    <div class="footer">
+      Made with <strong>lakas ng loob</strong>, konting kalokohan, at maraming 💗<br>
+      <span>— your secret admirer</span>
+    </div>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const story = $("story");
+    const confession = $("confession");
+    let audioContext = null, musicTimer = null, musicOn = false, noteIndex = 0;
+
+    $("startBtn").addEventListener("click", () => {
+      story.classList.remove("hidden");
+      story.scrollIntoView({ behavior: "smooth", block: "center" });
+      $("meter").style.width = "100%";
+      $("meterText").textContent = "Confidence: 100%. Dignity: currently buffering. 😂";
+      sprinkleHearts(12);
+    });
+    $("laterBtn").addEventListener("click", () => {
+      $("heroNote").textContent = "Valid ang kaba. Ako nga, nag-type pa lang, nanginginig na ang imaginary hands ko. 😭";
+      sprinkleHearts(5);
+    });
+    $("nextBtn").addEventListener("click", () => {
+      confession.classList.remove("hidden");
+      confession.scrollIntoView({ behavior: "smooth", block: "start" });
+      sprinkleHearts(18);
+    });
+    $("againBtn").addEventListener("click", () => {
+      $("response").classList.remove("show");
+      confession.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    const replies = {
+      yes: {
+        title: "SYSTEM STATUS: KINIKILIG NA ANG DEVELOPER! 💖",
+        text: "HALAAAAA, totoo ba 'to?! 😭😂 Thank you, Ella! I’ll do my best to treat you with care, respect, honesty, and lots of laughs. Screenshot ko ba 'to o baka panaginip lang?!"
+      },
+      court: {
+        title: "COURTSHIP MODE: ACTIVATED 🌷",
+        text: "Copy that, Ella! 🫡 I’ll take my time, get to know you better, and show you that I’m sincere. Walang pressure—good vibes at respeto muna. (Pero pwede bang kiligin nang konti? HAHAHA.)"
+      },
+      friends: {
+        title: "FRIENDSHIP MODE: RESPECTFULLY ON 🫶",
+        text: "Thank you for being honest, Ella. I respect your feelings, and no pressure at all. I’m glad you read my little website. Sana napangiti man lang kita kahit konti. 💗"
+      },
+      think: {
+        title: "NO RUSH, ELLA 🥹",
+        text: "Take all the time you need. You don’t owe me an instant answer. Salamat sa pagbabasa—at sa ngayon, mission accomplished na kung napangiti kita. 💗"
+      }
+    };
+    document.querySelectorAll("[data-answer]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const reply = replies[button.dataset.answer];
+        $("responseTitle").textContent = reply.title;
+        $("responseText").textContent = reply.text;
+        $("response").classList.add("show");
+        $("response").scrollIntoView({ behavior: "smooth", block: "nearest" });
+        if (button.dataset.answer === "yes") sprinkleHearts(32);
+        else sprinkleHearts(10);
+      });
+    });
+
+    function sprinkleHearts(count) {
+      const symbols = ["💗", "💕", "💖", "✨", "💘"];
+      for (let i = 0; i < count; i++) {
+        const heart = document.createElement("span");
+        heart.className = "floating-heart";
+        heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (16 + Math.random() * 22) + "px";
+        heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6500);
+      }
+    }
+    setInterval(() => { if (!document.hidden) sprinkleHearts(1); }, 2600);
+
+    // Original little melody synthesized in-browser; no external audio file needed.
+    function playNote(freq, duration = 0.28) {
+      if (!audioContext || !musicOn) return;
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      osc.type = "sine";
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.075, audioContext.currentTime + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + duration);
+      osc.connect(gain); gain.connect(audioContext.destination);
+      osc.start(); osc.stop(audioContext.currentTime + duration + 0.03);
+    }
+    const melody = [523.25, 659.25, 783.99, 659.25, 587.33, 698.46, 880, 698.46, 523.25, 659.25, 783.99, 1046.5, 880, 783.99, 659.25, 587.33];
+    function startMusic() {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) {
+        $("musicToggle").textContent = "🎵 Music unavailable";
+        return;
+      }
+      audioContext = audioContext || new AudioCtx();
+      audioContext.resume();
+      musicOn = true;
+      $("musicToggle").textContent = "🔊 Pause the vibe";
+      $("musicToggle").setAttribute("aria-pressed", "true");
+      playNote(melody[noteIndex % melody.length]);
+      noteIndex++;
+      musicTimer = setInterval(() => {
+        if (musicOn) {
+          playNote(melody[noteIndex % melody.length], 0.32);
+          if (noteIndex % 4 === 0) playNote(melody[(noteIndex + 2) % melody.length] / 2, 0.42);
+          noteIndex++;
+        }
+      }, 360);
+    }
+    function stopMusic() {
+      musicOn = false;
+      if (musicTimer) clearInterval(musicTimer);
+      musicTimer = null;
+      $("musicToggle").textContent = "🎵 Play the vibe";
+      $("musicToggle").setAttribute("aria-pressed", "false");
+    }
+    $("musicToggle").addEventListener("click", () => {
+      if (musicOn) stopMusic(); else startMusic();
+    });
+  </script>
+</body>
+</html>
